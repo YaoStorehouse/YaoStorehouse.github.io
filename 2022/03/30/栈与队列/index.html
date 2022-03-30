@@ -4,10 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="统计学习方法之感知机, YaoStorehouse">
-    <meta name="description" content="感知机 上本篇文章参考李航的《统计学习方法》和GitHub用户fengdu78所上传的对应解析文章和附带代码且本篇文章只用于记录自我的提升并非原创。（https://github.com/fengdu78/lihang-code）
+    <meta name="keywords" content="栈与队列, YaoStorehouse">
+    <meta name="description" content="栈·概念:
 
-基本背">
+栈是只允许在一段的进行插入或删除操作的线性表。栈的特性叫做先进后出。
+
+顺序栈使用顺序表当作存储结构的栈，一段作为栈底，再另设置一个栈顶指针，完成出入栈的操作。代码：#define MaxSize 50
+typedef str">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>统计学习方法之感知机 | YaoStorehouse</title>
+    <title>栈与队列 | YaoStorehouse</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3222.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">统计学习方法之感知机</h1>
+                    <h1 class="description center-align post-title">栈与队列</h1>
                 </div>
             </div>
         </div>
@@ -444,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-22
+                    2022-03-30
                 </div>
                 
 
@@ -468,101 +471,62 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="感知机-上"><a href="#感知机-上" class="headerlink" title="感知机 上"></a>感知机 上</h1><p>本篇文章参考李航的《统计学习方法》和GitHub用户fengdu78所上传的对应解析文章和附带代码且本篇文章只用于记录自我的提升并非原创。<br>（<a target="_blank" rel="noopener" href="https://github.com/fengdu78/lihang-code）">https://github.com/fengdu78/lihang-code）</a></p>
-<hr>
-<h3 id="基本背景介绍"><a href="#基本背景介绍" class="headerlink" title="基本背景介绍"></a>基本背景介绍</h3><p>这里引用《统计学习方法》中对感知机的定义。</p>
+                <h1 id="栈·"><a href="#栈·" class="headerlink" title="栈·"></a>栈·</h1><p>概念:</p>
 <blockquote>
-<p>:敢感知机（perceptron）是二分类的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取+1和-1二值，感知机对应于输出空间（特征空间）中将实例换分为正负两类的分离超平面，属于判别模型。感知机学习旨在求出将训练数据进行线性划分的分离超平面，为此，导入基于误分类的损失函数，利用梯度下降法对损失函数进行极小化，求得感知机模型。</p>
+<p>栈是只允许在一段的进行插入或删除操作的线性表。栈的特性叫做先进后出。</p>
 </blockquote>
-<p>1，其相应的数学公式为</p>
-<script type="math/tex; mode=display">
-f(x)=\operatorname{sign}(w \cdot x+b)</script><p>2，感知机模型对应于输入空间（特征空间）中的分离超平面$w \cdot x+b=0$。<br>损失函数为：</p>
-<script type="math/tex; mode=display">
-\min _{w, b} L(w, b)=-\sum_{x_{i} \in M} y_{i}\left(w \cdot x_{i}+b\right)</script><p>对应的物理意义是被误分类的样本到分离超平面的“距离”总和。<br>3，感知机学习算法是基于随机梯度下降法的对损失函数的最优化算法，有原始形式和对偶形式。算法简单且易于实现。原始形式中，首先任意选取一个超平面，然后用梯度下降法不断极小化目标函数。在这个过程中一次随机选取一个误分类点使其梯度下降。<br>4.在样本可分的情况下感知机学习算法是收敛的。感知机算法在训练数据集上的误分类次数$k$满足不等式</p>
-<script type="math/tex; mode=display">
-k \leqslant\left(\frac{R}{\gamma}\right)^{2}</script><p>当训练数据集线性可分时，感知机学习算法存在无穷多个解，其解由于不同的初值或不同的迭代顺序而可能有所不同。<br>(这个公式暂时看不懂来源，以后再说)</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>代码来源与GitHub用户fengdu78所上传代码。示例使用的是鸢尾花分类问题，该数据集被sklearn所收入当作示例。配置环境：python 3.5+。</p>
-<h5 id="数据初始化"><a href="#数据初始化" class="headerlink" title="数据初始化"></a>数据初始化</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> load_iris
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-<span class="token operator">%</span>matplotlib inline<span class="token comment">#初始换三方库</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># load data载入数据</span>
-iris <span class="token operator">=</span> load_iris<span class="token punctuation">(</span><span class="token punctuation">)</span>
-df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>iris<span class="token punctuation">.</span>data<span class="token punctuation">,</span> columns<span class="token operator">=</span>iris<span class="token punctuation">.</span>feature_names<span class="token punctuation">)</span>
-df<span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span> <span class="token operator">=</span> iris<span class="token punctuation">.</span>target<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">df<span class="token punctuation">.</span>columns <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'sepal length'</span><span class="token punctuation">,</span> <span class="token string">'sepal width'</span><span class="token punctuation">,</span> <span class="token string">'petal length'</span><span class="token punctuation">,</span> <span class="token string">'petal width'</span><span class="token punctuation">,</span> <span class="token string">'label'</span><span class="token punctuation">]</span><span class="token comment">#这里重命名个特征的名字，实际上在load_iris库里的数据里是sepal length (cm)，只是去除了(cm)</span>
-<span class="token comment">#df.label.value_counts()#计数label特征值的取值种类和对应的个数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'sepal length'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> df<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'sepal width'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-<span class="token comment">#plt.scatter（x,y,label）x轴y轴label就是对应图右上角的标识</span>
-plt<span class="token punctuation">.</span>scatter<span class="token punctuation">(</span>df<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'sepal length'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> df<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'sepal width'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'sepal length'</span><span class="token punctuation">)</span><span class="token comment">#x轴的名称，用中文名要有额外的更改，暂时就用英文</span>
-plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'sepal width'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#画出数据分布图</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h3><p>使用顺序表当作存储结构的栈，一段作为栈底，再另设置一个栈顶指针，完成出入栈的操作。<br>代码：<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#define MaxSize 50
+typedef struct&#123;
+int data[MaxSize];&#x2F;&#x2F;数组的方式声明栈
+int top;&#x2F;&#x2F;栈顶指针
+&#125;Sqstack;
+
+&#x2F;&#x2F;压栈
+bool Push(Sqstack &amp;s, int x)
+&#123;
+	if(s.top &#x3D;&#x3D; MaxSize-1)&#x2F;&#x2F;防止爆栈
+		return false;
+	s.data[++s.top] &#x3D; x;&#x2F;&#x2F;++s.top是s.top先加然后再参与其他运算
+	return true;
+
+&#125;
+
+bool Pop(Sqtack &amp;s, int &amp;x)
+&#123;
+	if(s.top &#x3D;&#x3D; -1)
+		return false;
+	x&#x3D;s.data[s.top--];
+	return true;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
 <div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3221.jpg />
+<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3301.png />
 </div>
 
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">data <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>df<span class="token punctuation">.</span>iloc<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment">#将df中的前100行，第1，2，5列放入np数组data中方便后操作</span>
-X<span class="token punctuation">,</span> y <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-y <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span> <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">1</span> <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> y<span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment">#将值‘0’更改为-1，满足后续感知机sign函数的要求</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="实现感知机"><a href="#实现感知机" class="headerlink" title="实现感知机"></a>实现感知机</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Model</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>w <span class="token operator">=</span> np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token comment">#w==([1. 1.])</span>
-        self<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">0</span>
-        self<span class="token punctuation">.</span>l_rate <span class="token operator">=</span> <span class="token number">0.1</span><span class="token comment">#梯度下降速率</span>
-        <span class="token comment"># self.data = data</span>
-
-    <span class="token keyword">def</span> <span class="token function">sign</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> w<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        y <span class="token operator">=</span> np<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>x<span class="token punctuation">,</span> w<span class="token punctuation">)</span> <span class="token operator">+</span> b<span class="token comment">#初始值x.[1 1]+0</span>
-        <span class="token comment">#dot函数，返回两个数组的点积。</span>
-        <span class="token comment">#点积如：a[1,2,3],b[2,3,4],a.b=20</span>
-        <span class="token keyword">return</span> y
-
-    <span class="token comment"># 随机梯度下降法</span>
-    <span class="token keyword">def</span> <span class="token function">fit</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        is_wrong <span class="token operator">=</span> <span class="token boolean">False</span>
-        <span class="token keyword">while</span> <span class="token keyword">not</span> is_wrong<span class="token punctuation">:</span>
-            wrong_count <span class="token operator">=</span> <span class="token number">0</span>
-            <span class="token keyword">for</span> d <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>X_train<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                X <span class="token operator">=</span> X_train<span class="token punctuation">[</span>d<span class="token punctuation">]</span>
-                y <span class="token operator">=</span> y_train<span class="token punctuation">[</span>d<span class="token punctuation">]</span>
-                <span class="token keyword">if</span> y <span class="token operator">*</span> self<span class="token punctuation">.</span>sign<span class="token punctuation">(</span>X<span class="token punctuation">,</span> self<span class="token punctuation">.</span>w<span class="token punctuation">,</span> self<span class="token punctuation">.</span>b<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                <span class="token comment">#如果y与sign返回值不同则使用梯度下降</span>
-                    self<span class="token punctuation">.</span>w <span class="token operator">=</span> self<span class="token punctuation">.</span>w <span class="token operator">+</span> self<span class="token punctuation">.</span>l_rate <span class="token operator">*</span> np<span class="token punctuation">.</span>dot<span class="token punctuation">(</span>y<span class="token punctuation">,</span> X<span class="token punctuation">)</span>
-                    self<span class="token punctuation">.</span>b <span class="token operator">=</span> self<span class="token punctuation">.</span>b <span class="token operator">+</span> self<span class="token punctuation">.</span>l_rate <span class="token operator">*</span> y
-                    wrong_count <span class="token operator">+=</span> <span class="token number">1</span>
-            <span class="token keyword">if</span> wrong_count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                is_wrong <span class="token operator">=</span> <span class="token boolean">True</span>
-        <span class="token keyword">return</span> <span class="token string">'Perceptron Model!'</span>
-
-    <span class="token keyword">def</span> <span class="token function">score</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="链栈"><a href="#链栈" class="headerlink" title="链栈"></a>链栈</h3><p>使用链表的存储方式实现的栈。<br>代码：<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">typedef struct Linknode&#123;
+int data;
+struct Linknode *next;
+&#125;*LiStack;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></p>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><h3 id="普通队列"><a href="#普通队列" class="headerlink" title="普通队列"></a>普通队列</h3><p>概念：</p>
+<blockquote>
+<p>队列是一种操作受限的的线性表，只允许在链表的一段插入操作，而在另一端删除操作；向一段插入操作叫做进队；在另一端删除的操作叫出队。队列操作特性是做先进先出。</p>
+</blockquote>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#define MaxSize 50
+typedef struct &#123;
+int data[Maxsize];
+int front,rear;&#x2F;&#x2F;front指对头，rear指队尾。对头出，队尾入
+&#125;SqQuene;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3222.jpg  />
-</div>
-
-<p>model类里面的私有w，b对应的就是公式的参数</p>
-<script type="math/tex; mode=display">
-f(x)=\operatorname{sign}(w \cdot x+b)</script><p>因为要求模型对每一组都要正确的分类，所以十分容易过拟合。只有在数据质量特别高且数据准确没有误差的情况下，效果才好。个人认为这种模型十分原始且不好用。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">perceptron <span class="token operator">=</span> Model<span class="token punctuation">(</span><span class="token punctuation">)</span>
-perceptron<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">x_points <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
-y_ <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span>perceptron<span class="token punctuation">.</span>w<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> x_points <span class="token operator">+</span> perceptron<span class="token punctuation">.</span>b<span class="token punctuation">)</span> <span class="token operator">/</span> perceptron<span class="token punctuation">.</span>w<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x_points<span class="token punctuation">,</span> y_<span class="token punctuation">)</span>
-
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'bo'</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'blue'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'0'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'bo'</span><span class="token punctuation">,</span> color<span class="token operator">=</span><span class="token string">'orange'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'1'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'sepal length'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'sepal width'</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3223.jpg  />
+<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3302.png />
 </div>
 
 
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p> 概念：</p>
+<blockquote>
+<p>不同对列存在假溢出的情况，其原因在出对后的队列空间并没有利用起来。循环队列就是为了解决假溢出问题，通过rear=(rear+1)%MaxSize的方式来防止假溢出。</p>
+</blockquote>
+<div align=center>
+<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3303.png />
+</div>
                 
             </div>
             <hr/>
@@ -588,7 +552,7 @@ plt<span class="token punctuation">.</span>legend<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://YaoStorehouse.github.io/2022/03/22/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E4%B9%8B%E6%84%9F%E7%9F%A5%E6%9C%BA/">https://YaoStorehouse.github.io/2022/03/22/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E4%B9%8B%E6%84%9F%E7%9F%A5%E6%9C%BA/</a>
+                    <a href="https://YaoStorehouse.github.io/2022/03/30/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">https://YaoStorehouse.github.io/2022/03/30/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -797,53 +761,18 @@ plt<span class="token punctuation">.</span>legend<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92/">
+                <a href="/2022/03/30/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="计算机组成原理更新计划">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="栈与队列">
                         
-                        <span class="card-title">计算机组成原理更新计划</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Yao
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%BB%BC%E5%90%88%E6%80%BB%E6%A6%82/">
-                    <div class="card-image">
-                        
-                        <img src="https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/319.jpg" class="responsive-img" alt="计算机基础综合总概">
-                        
-                        <span class="card-title">计算机基础综合总概</span>
+                        <span class="card-title">栈与队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -854,7 +783,45 @@ plt<span class="token punctuation">.</span>legend<span class="token punctuation"
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Yao
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/27/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="线性表">
+                        
+                        <span class="card-title">线性表</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-27
                             </span>
                         <span class="publish-author">
                             
@@ -978,13 +945,6 @@ plt<span class="token punctuation">.</span>legend<span class="token punctuation"
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
