@@ -4,12 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="线性表, YaoStorehouse">
-    <meta name="description" content="线性表线性表的定义：
-
-在元素有限的情况下，除了表头和表尾，每一个元素都只有一个前驱一个后继，表头只有后继，表尾只有前驱。
-
-这种定义描述的是一种线性有序逻辑结构，并没有对其存储结构有所限制，所以在存储方面有顺序表和链表两种（个人认为还可以">
+    <meta name="keywords" content="C++基本知识1, YaoStorehouse">
+    <meta name="description" content="概念：常类型const，被修饰的类型不能被重新赋值，比如说： const int a = 100;在这个语句后的程序不能对a变量重新赋值。const修饰的变量必须在声明时就赋值，且只有这一次赋值。另外在这个语句前也不能出现a变量。const">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>线性表 | YaoStorehouse</title>
+    <title>C++基本知识1 | YaoStorehouse</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -313,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">线性表</h1>
+                    <h1 class="description center-align post-title">C++基本知识1</h1>
                 </div>
             </div>
         </div>
@@ -434,12 +430,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                <span class="chip bg-color">数据结构</span>
-                            </a>
-                        
-                            <a href="/tags/408/">
-                                <span class="chip bg-color">408</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
                     </div>
@@ -454,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-27
+                    2022-04-10
                 </div>
                 
 
@@ -478,170 +470,59 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><p>线性表的定义：</p>
-<blockquote>
-<p>在元素有限的情况下，除了表头和表尾，每一个元素都只有一个前驱一个后继，表头只有后继，表尾只有前驱。</p>
-</blockquote>
-<p>这种定义描述的是一种线性有序逻辑结构，并没有对其存储结构有所限制，所以在存储方面有顺序表和链表两种（个人认为还可以用一小段顺序表互相头尾链接形成杂合体）。</p>
-<h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>顺序表：它的元素的逻辑顺序和物理顺序相同，可以进行随机读取。但是需要内存中一整块的存储空间，容易照成内存空间碎片，降低空间使用率。在使用方面因为它的随机读取的特性，在查找方面效率高，但又因为他的逻辑顺序和物理顺序必须相同在元素插入方面消耗很大。</p>
-<div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3271.png />
-</div>
-##### 代码
+                <h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><p>常类型const，被修饰的类型不能被重新赋值，比如说： const int a = 100;在这个语句后的程序不能对a变量重新赋值。const修饰的变量必须在声明时就赋值，且只有这一次赋值。另外在这个语句前也不能出现a变量。const类型默认为文件局部变量，在另外一个源文件不起作用。<br>如：<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">错误一：
+const int a&#x3D;100;
+a++;&#x2F;&#x2F;这种情况对a重新赋值了，会报错；
 
-顺序表的结构体+声明
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#define MaxSize 50&#x2F;&#x2F;顺序表最大的长度
-typedef struct &#123;
-int data[MaxSize];&#x2F;&#x2F;int 代表元素的类型
-int length;&#x2F;&#x2F;顺序表的长度
-&#125;Sqlist;&#x2F;&#x2F;顺序表的类型定义<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-上机具体实现
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#define ListSize 100      &#x2F;&#x2F;线性表的最大长度
-typedef int DataType;
-
-#define MaxSize 50&#x2F;&#x2F;顺序表最大的长度
-typedef struct &#123;
-    int data[MaxSize];&#x2F;&#x2F;int 代表元素的类型
-    int length;&#x2F;&#x2F;顺序表的长度
-&#125;Sqlist;&#x2F;&#x2F;顺序表的类型定义
-
-#include &lt;iostream&gt;
-int main()
+错误二：
+int  a &#x3D; 50;
+const int a &#x3D; 100;&#x2F;&#x2F;不能对已经存在的变量变为常类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br> const 和#define的区别：</p>
+<pre><code>- const可以指定类型，定义的变量返回的是对应的值。（如int char等，string它虽然是一种类class，但也是可以修饰的）；
+ - \#define不可以（#define 定义变量返回的的给的是立即数，计算机组成原理的立即数）；
+内存空间方面
+ - const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是像`#define`一样给出的是立即数;
+ - const定义的常量在程序运行过程中只有一份拷贝，而`#define`定义的常量在内存中有若干个拷贝。
+</code></pre><h3 id="和-的联动"><a href="#和-的联动" class="headerlink" title="和*的联动:"></a>和*的联动:</h3><ul>
+<li>const int * a; //指向const对象的指针或者说指向常量的指针。</li>
+<li>int const * a; //同上</li>
+<li>int * const a; //指向类型对象的const指针。或者说常指针、const指针。</li>
+<li>const int  * const a; //指向const对象的const指针。</li>
+</ul>
+<h5 id="const-int-a"><a href="#const-int-a" class="headerlink" title="const int * a;"></a>const int * a;</h5><p>//const修饰int，其作用主要是限制*a指针指向的数据类型（这里是int型  ）<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">int main()
 &#123;
-    Sqlist  L;
-    L.length &#x3D; 0;
-    &#x2F;&#x2F;必须时L.length，L-&gt;length会报错，原因暂时未知
-    L.data[L.length++] &#x3D; 1;
-    L.data[L.length] &#x3D; 3;
-    std::cout &lt;&lt; L.length &lt;&lt; L.data[1]&lt;&lt;&quot;\n&quot;;
-    std::cout &lt;&lt; &quot;Hello World!\n&quot;;
+	int b[] &#x3D; &#123;0,1,2,3,4&#125;;
+	const int * a &#x3D; b;
+	std::cout &lt;&lt;&quot;一下三种表示返回值相同：&quot;&lt;&lt; std::endl;
+	&#x2F;&#x2F;这几种表达方法都是b数组的首”地址“，也是b[0]元素的地址
+	std::cout &lt;&lt; b &lt;&lt; std::endl;
+	std::cout &lt;&lt; &amp;b[0] &lt;&lt; std::endl;
+	std::cout &lt;&lt; a &lt;&lt; std::endl;&#x2F;&#x2F;这种这能读出数组的值，不能写。
+	std::cout &lt;&lt; &quot;一下两种方法返回值相同：&quot; &lt;&lt; std::endl;
+	&#x2F;&#x2F;这几种表达方法都是b数组的首元素值，也是b[0]元素对应的值
+	std::cout &lt;&lt; b[0] &lt;&lt; std::endl;
+	std::cout &lt;&lt; *a &lt;&lt; std::endl;&#x2F;&#x2F;这种这能读出数组的值，不能写。
+	std::cout &lt;&lt; &quot;一下两种方法返回值相同：&quot; &lt;&lt; std::endl;
+	&#x2F;&#x2F;这几种表达方法都是b数组后面的值，
+	std::cout &lt;&lt; b[0+2] &lt;&lt; std::endl;
+	std::cout &lt;&lt; *(a+2) &lt;&lt; std::endl;&#x2F;&#x2F;这种这能读出数组的值，不能写。
+
 &#125;
-
-
-实验结果
-13
-Hello World<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-一些基本操作
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;在特定位置插入一个元素
-bool ListInsert(Sqlist &amp;L,int i,int e)&#123;&#x2F;&#x2F;通过把L顺序表首地址的方式传入
-if (i&lt;1||i&gt;L.lengh+1)&#x2F;&#x2F;确定i的值是否有效，可能小于1，或这超过顺序表的长度
-	return false;
-if(L.length&gt;&#x3D;MaxSize)&#x2F;&#x2F;防止数组超过其最大长度
-	return false;
-for(int j&#x3D;l.length;j&gt;&#x3D;i;i--)
-	L.data[j]&#x3D;L.data[j-1];
-	&#x2F;&#x2F;从队尾位开始，每一个都向后面移一位，在保持顺序表的大致循序给i移出空间
-L.data[i-1]&#x3D;e;&#x2F;&#x2F;插入指定位置
-L.lengh++;
-return true;
-&#125;
-
-&#x2F;&#x2F;删除特定位置元素，并且将删除的值传入e中
-bool ListDelete(SqList &amp;L,int i,int &amp;e)&#123;
-&#x2F;&#x2F;由于返回值是bool，所以这里使用该写传入参数地址对应值的方式返回被删除的值
-if(i&lt;1||i&gt;L.length)
-	return false;
-e&#x3D;L.data[i-1];&#x2F;&#x2F;将被删除付给指定地址的值
-for(int j&#x3D;i;j&lt;L.length;j++)
-	L.data[j-1] &#x3D; L.data[j];&#x2F;&#x2F;用覆盖的方式删除指定位置的值
-L.length--;
-return ture;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-###  链表
-
-#####  概念
-链表有单链表，双链表，循环链表等各种变种，这里主要解释单链表。单链表是指通过一组任意的存储单元来存储线性表中的数据元素。为了满足线性表的定定，每一存储单元除了存放元素自生意外还存有指向下一个元素的地址。通过这样的方式保证线性表的逻辑特征
-
-<div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3272.png />
-</div>
-
-
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>单链表：<br>结构体+声明<br><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct LNode&#123;&#x2F;&#x2F;单链表节点类型
-int data;&#x2F;&#x2F;存储元素
-struct LNode *next;&#x2F;&#x2F;指向下一个元素的指针
-&#125;LNode,*LinkList;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><br>一写基本操作<br><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;&#x2F;头插法建立单链表
-LinkList List_HeadInsert(LinkList &amp;L)&#123;
-LNode *s;int x;
-L&#x3D;(LinkList)malloc(sizeof(LNode));
-L-&gt;next&#x3D;NULL;
-scanf(&quot;%d&quot;,&amp;x);&#x2F;&#x2F;等待键盘输入数字并放入x变量中
-while (x !&#x3D; 9999) &#123;
-    s &#x3D; (LNode*)malloc(sizeof(LNode));
-    s-&gt;data &#x3D; x;
-    s-&gt;next &#x3D; L-&gt;next;
-    L-&gt;next &#x3D; s;
-    scanf(&quot;%d&quot;, &amp;x);
-&#125;
-return L;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>实际上机操作<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#define _CRT_SECURE_NO_WARNINGS&#x2F;&#x2F;必须加原因暂时未知
-typedef struct LNode &#123;&#x2F;&#x2F;单链表节点类型
-    int data;&#x2F;&#x2F;存储元素
-    struct LNode* next;&#x2F;&#x2F;指向下一个元素的指针
-&#125;LNode, * LinkList;
-#include &lt;iostream&gt;
-int main()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<p><div align=center>
+<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/4091.png />
+</div><br>但是使用了const后通过指针*a只能读不能写<br><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">int main()
 &#123;
-    LinkList L;
-    L &#x3D; (LinkList)malloc(sizeof(LNode));
-    L-&gt;next &#x3D; NULL;
-    LinkList s;
-    int x;
-    std::cout &lt;&lt; &quot;程序开始，请输入数字（输入9999结束程序）:\n&quot;;
-    scanf(&quot;%d&quot;, &amp; x);&#x2F;&#x2F;等待键盘输入数字并放入x变量中
-    while (x !&#x3D; 9999) &#123;
-        std::cout &lt;&lt; &quot;请输入下个数字:\n&quot;;
-        s &#x3D; (LNode*)malloc(sizeof(LNode));
-        s-&gt;data &#x3D; x;
-        s-&gt;next &#x3D; L-&gt;next;
-        L-&gt;next &#x3D; s;
-        scanf(&quot;%d&quot;, &amp;x);
-    &#125;
-    LinkList r;
-    r &#x3D; L;
-    std::cout &lt;&lt; &quot;尾插法结果为:\n&quot;;
-    while (r-&gt;next !&#x3D; NULL) &#123;
-        r &#x3D; r-&gt;next;
-        std::cout &lt;&lt; r-&gt;data;
-    &#125;
-    std::cout &lt;&lt; &quot;\n&quot;;
-    std::cout &lt;&lt; &quot;程序结束!\n&quot;;
-&#125;&#96;&#96;&#96;
-实机程序结果：
-&lt;div align&#x3D;center&gt;
-&lt;img src&#x3D;https:&#x2F;&#x2F;github.com&#x2F;YaoStorehouse&#x2F;YaoStorehouse.github.io&#x2F;raw&#x2F;main&#x2F;images&#x2F;3275.png &#x2F;&gt;
-&lt;&#x2F;div&gt;
-
-如下图可以发现，插入顺序和在读出链表的顺序是相反的
-&lt;div align&#x3D;center&gt;
-&lt;img src&#x3D;https:&#x2F;&#x2F;github.com&#x2F;YaoStorehouse&#x2F;YaoStorehouse.github.io&#x2F;raw&#x2F;main&#x2F;images&#x2F;3273.png &#x2F;&gt;
-&lt;&#x2F;div&gt;
-
-&#96;&#96;&#96;C++
-LinkList List_HeadInsert(LinkList &amp;l)&#123;
-int x;
-L&#x3D;(LinkList)malloc(sizeof(LNode));
-LNode *s,*r&#x3D;L;
-scanf(&quot;%d&quot;,&amp;x);
-while(x!&#x3D;9999)&#123;
-	s&#x3D;(LNode *)malloc(sizeof(LNode));
-	s-&gt;data&#x3D;x;&#x2F;&#x2F;存储来自下一个元素
-	r-&gt;next&#x3D;s;&#x2F;&#x2F;将该节点链接到链表尾端
-	r&#x3D;s;&#x2F;&#x2F;将r的值更新的新的链尾
-	scanf(&quot;%d&quot;,&amp;x);
-
-&#125;
-r-&gt;next&#x3D;NULL;&#x2F;&#x2F;尾指针指向空
-return L;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>如下图，可以发现，插入顺序和在读出链表的顺序是相同的</p>
-<div align=center>
-<img src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3273.png />
-</div>
-
-<p>双链表：</p>
-
+	int a[] &#x3D; &#123;0,1,2,3,4&#125;;
+	const int * b &#x3D; a;&#x2F;&#x2F;不能通过const改变变量，只可读不可写。
+	int * c &#x3D; a;
+	std::cout &lt;&lt; *(a + 2) &lt;&lt; std::endl;
+	std::cout &lt;&lt; *(b + 2) &lt;&lt; std::endl;
+	std::cout &lt;&lt; *(c + 2) &lt;&lt; std::endl;
+	*(a + 2) &#x3D; 111;&#x2F;&#x2F;可执行
+	*(b + 2) &#x3D; 111;&#x2F;&#x2F;error
+	*(c + 2) &#x3D; 111;&#x2F;&#x2F;可执行
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+<h5 id="int-const-a-常指针"><a href="#int-const-a-常指针" class="headerlink" title="int * const a;//常指针"></a>int * const a;//常指针</h5>
                 
             </div>
             <hr/>
@@ -667,7 +548,7 @@ return L;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://YaoStorehouse.github.io/2022/03/27/%E7%BA%BF%E6%80%A7%E8%A1%A8/">https://YaoStorehouse.github.io/2022/03/27/%E7%BA%BF%E6%80%A7%E8%A1%A8/</a>
+                    <a href="https://YaoStorehouse.github.io/2022/04/10/C-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%861/">https://YaoStorehouse.github.io/2022/04/10/C-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%861/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -705,12 +586,8 @@ return L;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                                    <span class="chip bg-color">数据结构</span>
-                                </a>
-                            
-                                <a href="/tags/408/">
-                                    <span class="chip bg-color">408</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
                         </div>
@@ -884,9 +761,56 @@ return L;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/04/10/C-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%861/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="C++基本知识1">
+                        
+                        <span class="card-title">C++基本知识1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Yao
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/03/30/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/">
                     <div class="card-image">
@@ -904,9 +828,9 @@ return L;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -924,51 +848,6 @@ return L;
                     
                     <a href="/tags/408/">
                         <span class="chip bg-color">408</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/26/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%951/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="力扣刷题记录1">
-                        
-                        <span class="card-title">力扣刷题记录1</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-26
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Yao
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
                 </div>
@@ -1086,13 +965,6 @@ return L;
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
-</script>
 
 
 
