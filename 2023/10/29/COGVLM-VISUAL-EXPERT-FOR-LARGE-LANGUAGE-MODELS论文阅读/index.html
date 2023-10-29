@@ -416,7 +416,7 @@ src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/Cog
 <p>Visual Expert Module：在模型的每一层都添加了视觉模块，这可以使模型的视觉、语言特征的深度对齐。视觉模块由一个QKV矩阵和两层的全连接层组成。矩阵和全连接层的形状由预训练的大预言模型决定和初始化。语言模型通过每一个注意力头来捕获语义信息的特定方面，同时视觉模块可以将图像特征转化对齐注意力头</p>
 <div align=center>
 <img 
-src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/3271.png/CogVLM.png/>
+src=https://github.com/YaoStorehouse/YaoStorehouse.github.io/raw/main/images/CogVLM.png/>
 </div>
 
 <p>$attention（X,W_{I} ,W_{T} ）&#x3D;softmax(\frac{Tril(QK^{T} )}{\sqrt{D} } )V$<br>这里的tril()是掩码下三角矩阵<br>$Q&#x3D;concat(X_{I}W_{I}^{Q},X_{T}W_{T}^{Q})$<br>$K&#x3D;concat(X_{I}W_{I}^{K},X_{T}W_{T}^{K})$<br>$V&#x3D;concat(X_{I}W_{I}^{V},X_{T}W_{T}^{V})$</p>
